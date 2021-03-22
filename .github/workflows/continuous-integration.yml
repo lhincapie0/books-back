@@ -18,3 +18,17 @@ jobs:
           java-version: 11
       - name: Build with Gradle
         run: ./gradlew build
+
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use node.js ${{ matrix.node-version }}
+      - run: npm i
+      - run: npm test
+
